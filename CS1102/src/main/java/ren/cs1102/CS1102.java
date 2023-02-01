@@ -1,7 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-
 package ren.cs1102;
 
 /**
@@ -9,10 +8,23 @@ package ren.cs1102;
  * @author renos
  */
 public class CS1102 {
-    
-    int a = "semantic";
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        double x = 10.7;
+        System.out.println(x);
+
+    }
+
+    public boolean isMyLogicSound() {
+        
+        /*This if statement will check
+        whether 2==2 is true or not.
+        The intention is to return true if it is, and false if not*/
+
+        if (2==2) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
