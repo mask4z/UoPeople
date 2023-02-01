@@ -3,8 +3,8 @@ package ren.cs1102;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author renos
+ * This program is intended to prompt you with a dialog that asks a question about your super power.
+ * Then another dialog will prompt a message with the input received from the previous dialog.
  */
 public class SuperPower {
 
