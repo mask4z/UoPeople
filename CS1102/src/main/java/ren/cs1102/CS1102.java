@@ -10,7 +10,8 @@ package ren.cs1102;
 public class CS1102 {
 
     public static void main(String[] args) {
-        double x = 10.7;
+        int x = 3;
+        x = x++;
         System.out.println(x);
 
     }
