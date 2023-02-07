@@ -3,6 +3,7 @@
  */
 package ren.cs1102;
 
+import textio.TextIO;
 /**
  *
  * @author renos
@@ -10,9 +11,18 @@ package ren.cs1102;
 public class CS1102 {
 
     public static void main(String[] args) {
-        int x = 3;
-        x = x++;
-        System.out.println(x);
+        int userInput;
+        int square;
+
+        System.out.print("Please type a number: ");
+        userInput = TextIO.getlnInt();
+        square = userInput * userInput;
+
+        System.out.println();
+        System.out.println("The number you entered was: " + userInput);
+        System.out.println("The square of that number is: " + square);
+        System.out.println();
+
 
     }
 
