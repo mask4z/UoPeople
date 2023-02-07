@@ -1,4 +1,4 @@
-package ren.cs1102;
+package ren.cs1102.Entities;
 
 import javax.swing.JOptionPane;
 

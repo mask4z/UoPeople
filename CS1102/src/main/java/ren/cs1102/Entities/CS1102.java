@@ -1,9 +1,9 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-package ren.cs1102;
+package ren.cs1102.Entities;
 
-import textio.TextIO;
+import lib.TextIO;
 /**
  *
  * @author renos

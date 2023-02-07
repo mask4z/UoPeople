@@ -1,10 +1,10 @@
-package ren.cs1102;
+package ren.cs1102.Entities;
 
 import lib.TextIO;
 
 public class Interest {
 
-    public static void main() {
+    public static void main(String[] args) {
         double principal;   //The value of the investment.
         double rate;    //The annual interest rate.
 
