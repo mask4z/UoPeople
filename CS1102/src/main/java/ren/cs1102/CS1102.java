@@ -11,17 +11,14 @@ import textio.TextIO;
 public class CS1102 {
 
     public static void main(String[] args) {
-        int userInput;
-        int square;
+        int x = 1;
 
-        System.out.print("Please type a number: ");
-        userInput = TextIO.getlnInt();
-        square = userInput * userInput;
+        while ( x < 6 ) {
 
-        System.out.println();
-        System.out.println("The number you entered was: " + userInput);
-        System.out.println("The square of that number is: " + square);
-        System.out.println();
+            System.out.println(x);
+
+            x += 1;
+        }
 
 
     }
