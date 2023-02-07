@@ -1,4 +1,4 @@
-package textio;
+package lib;
 
 import java.io.*;
 import java.util.IllegalFormatException;

@@ -19,7 +19,7 @@ public class CS1102 {
 
             x += 1;
         }
-
+        System.out.println("Done!");
 
     }
 
