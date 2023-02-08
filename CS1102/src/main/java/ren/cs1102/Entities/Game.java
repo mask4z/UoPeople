@@ -8,7 +8,7 @@ package ren.cs1102.Entities;
  *
  * @author renos
  */
-public class Checkers {
+public class Game {
     
     public static void playGame() {
         

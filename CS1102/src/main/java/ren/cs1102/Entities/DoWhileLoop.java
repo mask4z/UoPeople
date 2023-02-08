@@ -16,7 +16,7 @@ public class DoWhileLoop {
         boolean wantsToContinue;
         
         do {
-            Checkers.playGame();
+            Game.playGame();
             System.out.println("Do you want to play again?");
             wantsToContinue = TextIO.getlnBoolean();
             
