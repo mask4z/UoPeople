@@ -70,7 +70,6 @@ public class Quiz {
     static void check(String question, String correctAnswer) {
         
         String answer = ask(question);
-        answer = answer.toUpperCase();
         
         if (correctAnswer.startsWith(answer)) {
             JOptionPane.showMessageDialog(null, "Correct!");
