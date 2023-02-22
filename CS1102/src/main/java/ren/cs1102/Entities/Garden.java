@@ -24,7 +24,6 @@ public class Garden {
         trees.forEach(tree -> System.out.println("Your " + tree + " is " + tree.getHeight() + "cm tall."));
 
     }
-
     public static Tree plantTree(String name) {
         Tree newTree = new Tree();
         newTree.setName(name);
@@ -32,11 +31,10 @@ public class Garden {
 
         return newTree;
     }
-
     public static void matureTrees(List<Tree> trees) {
             try {
                 for (Tree tree : trees) {
-                    Tree.growTree(tree);
+                    tree.growTree();
                 }
         } catch (Exception e) {
                 throw new RuntimeException(e);
