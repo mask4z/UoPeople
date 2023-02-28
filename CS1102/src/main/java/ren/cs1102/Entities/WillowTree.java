@@ -1,4 +1,4 @@
-package ren.cs1102.Entities.Test;
+package ren.cs1102.Entities;
 
 import ren.cs1102.Entities.Tree;
 

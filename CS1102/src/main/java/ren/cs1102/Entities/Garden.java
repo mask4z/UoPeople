@@ -1,8 +1,5 @@
 package ren.cs1102.Entities;
 
-import ren.cs1102.Entities.Test.WillowTree;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Garden {
