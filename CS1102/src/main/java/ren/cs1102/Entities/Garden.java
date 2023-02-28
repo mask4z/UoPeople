@@ -1,36 +1,30 @@
 package ren.cs1102.Entities;
 
+import ren.cs1102.Entities.Test.WillowTree;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Garden {
 
+    static int treeCount;
+
     public static void main(String[] args) {
-        List<Tree> trees = new ArrayList<>();
-
-        Tree willowBonsai =  plantTree("Willow Bonsai");
-        Tree chineseElmBonsai = plantTree("Chinese Elm Bonsai");
-
-        trees.add(willowBonsai);
-        trees.add(chineseElmBonsai);
-
-        System.out.println("There are currently " + Tree.getTreeCount() + " tree/s in your garden.");
-        System.out.println("And your garden consists of the following trees: ");
-
-        trees.forEach(tree -> System.out.println(tree.toString()));
-
-        matureTrees(trees);
-
-        trees.forEach(tree -> System.out.println("Your " + tree + " is " + tree.getHeight() + "cm tall."));
 
     }
-    public static Tree plantTree(String name) {
-        Tree newTree = new Tree();
-        newTree.setName(name);
-        Tree.setTreeCount(Tree.getTreeCount()+ 1);
 
-        return newTree;
+    public static int getTreeCount() {
+        return treeCount;
     }
+
+    public static void setTreeCount(int treeCount) {
+        Garden.treeCount = treeCount;
+    }
+
+    public static void plantWillowTree(int height) {
+        WillowTree firstWillow = new WillowTree(2);
+    }
+
     public static void matureTrees(List<Tree> trees) {
             try {
                 for (Tree tree : trees) {

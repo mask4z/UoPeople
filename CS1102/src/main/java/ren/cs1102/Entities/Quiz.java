@@ -3,81 +3,74 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ren.cs1102.Entities;
-
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author renos
  */
 public class Quiz {
     
-    static int nQuestions = 0;
-    static int nCorrect = 0;
-
     public static void main(String[] args) {
 
-        String question1 = "What is the highest mountain above sea level?\n";
-        question1 += "A. Kangchenjunga\n";
-        question1 += "B. Mount Elbrus\n";
-        question1 += "C. Mount Everest\n";
-        question1 += "D. Mount Kilimanjaro\n";
-        question1 += "E. K2\n";
-        String answer1 = "C. Mount Everest";
+        MultipleChoiceQuestion question1 = new MultipleChoiceQuestion("What fuel did the nuclear reactor use at the Chernobyl nuclear power plant?",
+                "Uranium dioxide",
+                "Mixed oxide",
+                "TRIGA",
+                "Actinide",
+                "Molten plutonium",
+                "a");
 
-        String question2 = "Other than in programming, what else is java known as?\n";
-        question2 += "A. Coffee.\n";
-        question2 += "B. Mud.\n";
-        question2 += "C. A building.\n";
-        question2 += "D. Grass.\n";
-        question2 += "E. A computer.\n";
-        String answer2 = "A. Coffee.";
+        question1.check();
 
-        String question3 = "What is the speed of light?\n";
-        question3 += "A. 300 000m/s.\n";
-        question3 += "B. 3 000 000m/s.\n";
-        question3 += "C. 300 000 000m/s.\n";
-        question3 += "D. 300m/s.\n";
-        question3 += "E. 300 000 000km/s.\n";
-        String answer3 = "C. 300 000 000m/s";
-        
-        check(question1, answer1);
-        check(question2, answer2);
-        check(question3, answer3);
-        JOptionPane.showMessageDialog(null, nCorrect + " correct out of " + nQuestions + " questions.");
-    }
+        MultipleChoiceQuestion question2 = new MultipleChoiceQuestion("What is the highest mountain above sea level?",
+                "Kangchenjunga",
+                "Mount Elbrus",
+                "Mount Everest",
+                "Mount Kilimanjaro",
+                "K2",
+                "c");
 
-    static String ask(String question) {
+        question2.check();
 
-        boolean validAnswer = false;
-        String answer = null;
+        MultipleChoiceQuestion question3 = new MultipleChoiceQuestion("Other than in programming, what else is java known as?",
+                "Coffee",
+                "Mud",
+                "A building",
+                "Grass",
+                "A computer",
+                "a");
 
-        while (!validAnswer) {
+        question3.check();
 
-            answer = JOptionPane.showInputDialog(question);
-            answer = answer.toUpperCase();
+        MultipleChoiceQuestion question4 = new MultipleChoiceQuestion("What is the speed of light?",
+                "300 000m/s",
+                "3 000 000m/s",
+                "300 000 000m/s",
+                "300m/s",
+                "300 000 000km/s",
+                "c");
 
-            if (answer.matches("[A-E]")) {
-                break;
-            } else {
-                JOptionPane.showMessageDialog(null, "Invalid answer. Please enter A, B, C, D, or E.");
-            }
-        }
+        question4.check();
 
-        return answer;
-    }
-    
-    static void check(String question, String correctAnswer) {
-        
-        String answer = ask(question);
-        
-        if (correctAnswer.startsWith(answer)) {
-            JOptionPane.showMessageDialog(null, "Correct!");
-            nCorrect++;
-        } else {
-            JOptionPane.showMessageDialog(null, "Incorrect. The correct answer is " + correctAnswer);
-        }
-        nQuestions++;
-        
+        MultipleChoiceQuestion question5 = new MultipleChoiceQuestion("How many cards are there in a deck?",
+                "55",
+                "60",
+                "100",
+                "52",
+                "49",
+                "d");
+
+        question5.check();
+
+        MultipleChoiceQuestion question6 = new MultipleChoiceQuestion("How far is the moon from Earth?",
+                "384 400 m",
+                "400 000 km",
+                "384 400 km",
+                "285 655 km",
+                "150 759 km",
+                "c");
+
+        question6.check();
+        question6.showResults();
+
     }
 }

@@ -1,33 +1,24 @@
 package ren.cs1102.Entities;
 
-public class Tree {
+public class Tree{
+    static int height;
 
-    private int height;
-    private String name;
-    static int treeCount;
-
-    public int getHeight() {
+    public static int getHeight() {
         return height;
     }
-    public void setHeight(int height) {
-        this.height = height;
+
+    public static void setHeight(int height) {
+        Tree.height = height;
     }
-    public static int getTreeCount() {
-        return treeCount;
-    }
-    public static void setTreeCount(int treeCount) {
-        Tree.treeCount = treeCount;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
+
     public void growTree() {
-        height += 1;
     }
-    public String toString() {
-        return name;
+
+    public void setTreeCount(int count) {
+        Garden.setTreeCount(count);
+    }
+
+    public int getTreeCount() {
+        return Garden.getTreeCount();
     }
 }
