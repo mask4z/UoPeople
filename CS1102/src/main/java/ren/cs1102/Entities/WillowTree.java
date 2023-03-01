@@ -8,16 +8,18 @@ public class WillowTree extends Tree {
 
     public WillowTree() {
         super.setTreeCount(super.getTreeCount() + 1);
+        this.setHeight(0);
     }
 
-    public WillowTree(String nickName) {
+    public WillowTree(String nickName, int height) {
         this.name = nickName;
-        super.setTreeCount(super.getTreeCount() + 1);
-    }
-
-    public WillowTree(int height) {
         this.setHeight(height);
         super.setTreeCount(super.getTreeCount() + 1);
+    }
+
+    public void growTree() {
+        super.growTree();
+        System.out.println( this.getName() + "has grown " + this.getHeight() + "cm");
     }
 
     public String getName() {
@@ -27,4 +29,6 @@ public class WillowTree extends Tree {
     public void setName(String name) {
         this.name = name;
     }
+
 }
+

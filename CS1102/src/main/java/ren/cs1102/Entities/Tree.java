@@ -1,17 +1,18 @@
 package ren.cs1102.Entities;
 
 public class Tree{
-    static int height;
+    private int height;     // height in cm
 
-    public static int getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public static void setHeight(int height) {
-        Tree.height = height;
+    public void setHeight(int height) {
+        this.height = height;
     }
 
     public void growTree() {
+        setHeight(getHeight() + 1);
     }
 
     public void setTreeCount(int count) {

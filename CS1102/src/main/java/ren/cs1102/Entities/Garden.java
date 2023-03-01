@@ -7,9 +7,10 @@ public class Garden {
     static int treeCount;
 
     public static void main(String[] args) {
-        WillowTree willowQ = new WillowTree("willowQ");
+        WillowTree willowQ = new WillowTree("willowQ", 2);
         System.out.println("Hi, I'm a new tree and my name is " + willowQ.getName());
         System.out.println("And in my garden I have " + treeCount);
+        willowQ.growTree();
 
     }
 
@@ -19,19 +20,5 @@ public class Garden {
 
     public static void setTreeCount(int treeCount) {
         Garden.treeCount = treeCount;
-    }
-
-    public static void plantWillowTree(int height) {
-        WillowTree firstWillow = new WillowTree(2);
-    }
-
-    public static void matureTrees(List<Tree> trees) {
-            try {
-                for (Tree tree : trees) {
-                    tree.growTree();
-                }
-        } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
     }
 }
