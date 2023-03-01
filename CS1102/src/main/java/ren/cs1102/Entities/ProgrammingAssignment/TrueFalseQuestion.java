@@ -3,6 +3,7 @@ package ren.cs1102.Entities.ProgrammingAssignment;
 import javax.swing.JOptionPane;
 
 public class TrueFalseQuestion extends Question {
+
     @Override
     public String ask() {
 
@@ -14,10 +15,10 @@ public class TrueFalseQuestion extends Question {
             answer = JOptionPane.showInputDialog(question);
             answer = answer.toUpperCase();
 
-            if (answer.equals("F") || answer.equals("FALSE") ||
-                    answer.equals("N") || answer.equals("NO") ||
-                    answer.equals("T") || answer.equals("TRUE") ||
-                    answer.equals("Y") || answer.equals("YES")) {
+            if (answer.equals("F") || answer.equals("FALSE")
+                    || answer.equals("N") || answer.equals("NO")
+                    || answer.equals("T") || answer.equals("TRUE")
+                    || answer.equals("Y") || answer.equals("YES")) {
                 validAnswer = true;
                 break;
             } else {
@@ -29,15 +30,15 @@ public class TrueFalseQuestion extends Question {
 
     public TrueFalseQuestion(String question, String answer) {
         this.question = "TRUE or FALSE: " + question;
-        answer.toUpperCase();
+        answer = answer.toUpperCase();
 
-        if (answer.equals("F") || answer.equals("FALSE") ||
-                answer.equals("N") || answer.equals("NO") ||
-                answer.equals("T") || answer.equals("TRUE") ||
-                answer.equals("Y") || answer.equals("YES")) {
+        if (answer.equals("F") || answer.equals("FALSE")
+                || answer.equals("N") || answer.equals("NO")
+                || answer.equals("T") || answer.equals("TRUE")
+                || answer.equals("Y") || answer.equals("YES")) {
 
-            if (answer.equals("T") || answer.equals("TRUE") ||
-                    answer.equals("Y") || answer.equals("YES")) {
+            if (answer.equals("T") || answer.equals("TRUE")
+                    || answer.equals("Y") || answer.equals("YES")) {
                 this.correctAnswer = "TRUE";
             } else {
                 this.correctAnswer = "FALSE";
