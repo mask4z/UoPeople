@@ -17,7 +17,7 @@ public class WillowTree extends Tree {
 
     public void growTree() {
         super.growTree();
-        System.out.println( this.getName() + "has grown " + this.getHeight() + "cm");
+        System.out.println( this.getName() + " has grown " + this.getHeight() + "cm");
     }
 
     public String getName() {
