@@ -7,6 +7,9 @@ public class Garden {
     static int treeCount;
 
     public static void main(String[] args) {
+        WillowTree willowQ = new WillowTree("willowQ");
+        System.out.println("Hi, I'm a new tree and my name is " + willowQ.getName());
+        System.out.println("And in my garden I have " + treeCount);
 
     }
 
