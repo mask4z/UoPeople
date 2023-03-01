@@ -1,6 +1,4 @@
-package ren.cs1102.Entities;
-
-import java.util.List;
+package ren.cs1102.Entities.Garden;
 
 public class Garden {
 

@@ -1,4 +1,4 @@
-package ren.cs1102.Entities;
+package ren.cs1102.Entities.Garden;
 
 public class Tree{
     private int height;     // height in cm

@@ -1,6 +1,4 @@
-package ren.cs1102.Entities;
-
-import ren.cs1102.Entities.Tree;
+package ren.cs1102.Entities.Garden;
 
 public class WillowTree extends Tree {
 
