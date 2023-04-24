@@ -1,35 +1,20 @@
 package ren.cs1102.Entities.ProgrammingAssignment;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
+import java.awt.*;
 
 public class TrueFalseQuestion extends Question {
 
-    @Override
-    public String ask() {
-
-        boolean validAnswer = false;
-        String answer = null;
-
-        while (!validAnswer) {
-
-            answer = JOptionPane.showInputDialog(question);
-            answer = answer.toUpperCase();
-
-            if (answer.equals("F") || answer.equals("FALSE")
-                    || answer.equals("N") || answer.equals("NO")
-                    || answer.equals("T") || answer.equals("TRUE")
-                    || answer.equals("Y") || answer.equals("YES")) {
-                validAnswer = true;
-                break;
-            } else {
-                JOptionPane.showMessageDialog(null, "Invalid answer. Please enter TRUE or FALSE.");
-            }
-        }
-        return answer;
-    }
-
     public TrueFalseQuestion(String question, String answer) {
-        this.question = "TRUE or FALSE: " + question;
+        super(question);
+
+        JPanel buttons = new JPanel();
+        addButton(buttons, "TRUE");
+        addButton(buttons, "FALSE");
+
+        this.question.add(buttons);
+        initQuestionDialog();
+
         answer = answer.toUpperCase();
 
         if (answer.equals("F") || answer.equals("FALSE")
@@ -46,5 +31,11 @@ public class TrueFalseQuestion extends Question {
         } else {
             System.out.println("Please supply a TRUE or FALSE as an answer when you construct TrueFalseQuestion objects");
         }
+    }
+
+    public void addButton(JPanel buttons, String label) {
+        JButton button = new JButton(label);
+        button.addActionListener(question);
+        buttons.add(button);
     }
 }
