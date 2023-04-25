@@ -1,4 +1,4 @@
-package week3Turing;
+package Unit3;
 
 /**
  * This class represents the tapes used in the Turing Machine.

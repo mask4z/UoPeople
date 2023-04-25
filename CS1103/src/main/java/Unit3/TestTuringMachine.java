@@ -1,4 +1,4 @@
-package week3Turing;
+package Unit3;
 
 
 // A test program for the TuringMachine class.  It creates three machines

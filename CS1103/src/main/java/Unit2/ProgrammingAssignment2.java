@@ -1,4 +1,4 @@
-package ProgrammingAssignment;
+package Unit2;
 
 /**
  * This program generates random sentences every 2 seconds using recursion.
