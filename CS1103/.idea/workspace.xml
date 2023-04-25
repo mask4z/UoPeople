@@ -5,25 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e8e1e63-77e9-4041-be95-f56a9ac93ed1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../CS1102/src/main/java/ren/cs1102/Entities/ProgrammingAssignment/QuestionDialog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/maven/archetype.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/archetype-resources/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/archetype-resources/src/main/java/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/archetype-resources/src/test/java/AppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CS1102/src/main/java/ren/cs1102/Entities/PA/MultipleChoiceQuestion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CS1102/src/main/java/ren/cs1102/Entities/PA/Quiz.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CS1102/src/main/java/ren/cs1102/Entities/ProgrammingAssignment/MultipleChoiceQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CS1102/src/main/java/ren/cs1102/Entities/ProgrammingAssignment/MultipleChoiceQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CS1102/src/main/java/ren/cs1102/Entities/ProgrammingAssignment/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CS1102/src/main/java/ren/cs1102/Entities/ProgrammingAssignment/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CS1102/src/main/java/ren/cs1102/Entities/ProgrammingAssignment/TrueFalseQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CS1102/src/main/java/ren/cs1102/Entities/ProgrammingAssignment/TrueFalseQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CS1102/src/main/java/ren/cs1102/Entities/Test/Food.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/week3Turing/Tape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week3Turing/Tape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/week3Turing/TestTuringMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week3Turing/TestTuringMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/week3Turing/TuringMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/week3Turing/TuringMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/PeerAssessment/BenchmarkSortingAlgorithms.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/PeerAssessment/BenchmarkSortingAlgorithms.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/PeerAssessment/Week1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/PeerAssessment/Week1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ProgrammingAssignment/ProgrammingAssignment2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ProgrammingAssignment/ProgrammingAssignment2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/StackOfInt$Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/StackOfInt$Node.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/StackOfInt.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/StackOfInt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Test/SimpleRandomSentences.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Test/SimpleRandomSentences.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,23 +47,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Projects/UoPeople/CS1103&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager">
+}</component>
+  <component name="RunManager" selected="Application.TestTuringMachine">
     <configuration name="AdditionProblem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Test.AdditionProblem" />
       <module name="CS1103" />
@@ -79,8 +72,50 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestTape" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="week3Turing.TestTape" />
+      <module name="CS1103" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="week3Turing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestTapeGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="week3Turing.TestTapeGUI" />
+      <module name="CS1103" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="week3Turing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestTuringMachine" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="week3Turing.TestTuringMachine" />
+      <module name="CS1103" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="week3Turing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TestTuringMachine" />
+        <item itemvalue="Application.TestTape" />
+        <item itemvalue="Application.TestTapeGUI" />
         <item itemvalue="Application.AdditionProblem" />
       </list>
     </recent_temporary>
@@ -96,10 +131,28 @@
       <workItem from="1681042540378" duration="1084000" />
       <workItem from="1681241670893" duration="85000" />
       <workItem from="1681322079946" duration="1389000" />
+      <workItem from="1682350280339" duration="5025000" />
+      <workItem from="1682388635657" duration="8270000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/week3Turing/TestTuringMachine.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="week3Turing.Rule" memberName="currentContent" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>
