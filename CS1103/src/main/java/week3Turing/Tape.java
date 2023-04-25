@@ -1,8 +1,10 @@
 package week3Turing;
 
 /**
- * A class for creating the tapes used in the Turing Machine.
- * It consists of a Cell that contains a character as content.
+ * This class represents the tapes used in the Turing Machine.
+ * A tape is used in a turing machine.
+ * A tape consists of a Cell that contains a character as content.
+ * A tape can also be moved left or right and it is not limited by how far it can move.
  */
 public class Tape {
 
@@ -16,7 +18,6 @@ public class Tape {
     private Cell currentCell;
 
     /**
-     *
      * @return the tape's current cell.
      */
     public Cell getCurrentCell() {
@@ -24,7 +25,6 @@ public class Tape {
     }
 
     /**
-     *
      * @return the content contained in the current cell.
      */
     public char getContent() {
@@ -33,6 +33,7 @@ public class Tape {
 
     /**
      * A methods that changes the content of the current cell
+     *
      * @param ch
      */
     public void setContent(char ch) {
@@ -46,14 +47,16 @@ public class Tape {
      */
     public void moveLeft() {
 
+        // Creates a new cell if currentCell is at the leftmost cell.
         if (currentCell.prev == null) {
             Cell newCell = new Cell();
             newCell.content = ' ';
             currentCell.prev = newCell;
         }
-            Cell temp = currentCell;
-            currentCell = temp.prev;
-            currentCell.next = temp;
+        // Move the current cell to the left.
+        Cell temp = currentCell;
+        currentCell = temp.prev;
+        currentCell.next = temp;
     }
 
     /**
@@ -65,13 +68,16 @@ public class Tape {
             newCell.content = ' ';
             currentCell.next = newCell;
         }
-            Cell temp = currentCell;
-            currentCell = temp.next;
-            currentCell.prev = temp;
+        Cell temp = currentCell;
+        currentCell = temp.next;
+        currentCell.prev = temp;
     }
 
     /**
      * This method returns all the content contained in each cell of the tape.
+     * A variable (runner) is used to iterate through all the cells on the tape,
+     * and accumulates all the characters to form a string.
+     *
      * @return The String that comprises all the characters concatenated.
      */
     public String getTapeContents() {
