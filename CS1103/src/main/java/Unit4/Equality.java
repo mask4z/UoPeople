@@ -27,15 +27,11 @@ public class Equality {
         /**
          * The equals method is inherited from the class Object.
          */
-        private boolean equals(Student st) {
-
-            if (this.studentId == st.studentId) {
-                return true;
-            } else {
-                return false;
-            }
+        @Override
+        public boolean equals(Object obj) {
+            Student st = (Student) obj;
+            return this.studentId == st.studentId;
         }
-
     }
 
     public static void main(String[] args) {
