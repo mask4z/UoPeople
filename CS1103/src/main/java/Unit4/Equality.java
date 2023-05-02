@@ -11,17 +11,10 @@ import java.util.Random;
 public class Equality {
 
     static class Student {
-        private Integer studentId;
+        private int studentId;
 
         public Student(int i) {
             this.studentId = i;
-        }
-
-        public Student() {
-
-            Random random = new Random();
-
-            this.studentId = random.nextInt();
         }
 
         /**
@@ -36,21 +29,19 @@ public class Equality {
 
     public static void main(String[] args) {
 
-        Student st1 = new Student();
+        // Construct two students of the same student ids.
+        Student st1 = new Student(003365);
         Student st2 = new Student(003365);
 
-        System.out.println("This equality check will return false as the student's ids aren't the same.");
+        System.out.println("This equality check will return false as the students aren't in the same memory.");
+        System.out.println("Student 1's id is " + st1.studentId + " and memory location is " + st1);
+        System.out.println("Student 2's id is " + st2.studentId + " and memory location is " + st2);
+        System.out.println(st1 == st2); // the expression passed as a parameter would've evaluated the same as Object.equals(Object obj) method.
+
+        System.out.println("This equality check will return true as the student's ids " +
+                "are the same even though they're in different memory locations.");
         System.out.println("Student 1's id is " + st1.studentId);
         System.out.println("Student 2's id is " + st2.studentId);
-        System.out.println(st1.equals(st2));
-
-        st1.studentId = st2.studentId;
-
-        System.out.println("This equality check will return true as the student's ids are the same.");
-        System.out.println("Student 1's id is " + st1.studentId);
-        System.out.println("Student 2's id is " + st2.studentId);
-        System.out.println(st1.equals(st2));
-
-
+        System.out.println(st1.equals(st2)); // Uses the overridden equals method to check equality of student's ids.
     }
 }
