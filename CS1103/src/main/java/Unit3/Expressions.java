@@ -1,4 +1,4 @@
-package Test;
+package Unit3;
 /**
  * A class for experimenting with expression trees.  This class includes 
  * a nested abstract class and several subclasses that represent nodes in
@@ -44,7 +44,7 @@ public class Expressions {
 	 */
 	static ExpNode copy(ExpNode root) {
 		if (root instanceof ConstNode)
-			return new ConstNode(((ConstNode)root).number);
+			return new ConstNode(((ConstNode) root).number);
 		else if (root instanceof VariableNode)
 			return new VariableNode();
 		else {
