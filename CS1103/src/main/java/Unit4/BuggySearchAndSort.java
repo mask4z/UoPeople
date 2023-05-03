@@ -7,9 +7,6 @@ import java.util.Arrays;
  * for searching and sorting arrays.  It also has a main method that tests
  * the searching and sorting methods.
  * 
- * TODO: The search and sort methods in this class contain bugs that can
- * cause incorrect output or infinite loops.  Use the Eclipse debugger to 
- * find the bugs and fix them
  */
 public class BuggySearchAndSort {
 	
