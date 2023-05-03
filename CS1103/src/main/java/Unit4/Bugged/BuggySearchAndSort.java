@@ -1,4 +1,4 @@
-package Unit4;
+package Unit4.Bugged;
 
 import java.util.Arrays;
 
@@ -23,25 +23,25 @@ public class BuggySearchAndSort {
 		int[] C = A.clone();
 		int[] D = A.clone();
 		
-		System.out.print("The array is:");
-		printArray(A);
-		
-		if (contains(A,5))
-			System.out.println("This array DOES contain 5.");
-		else
-			System.out.println("This array DOES NOT contain 5.");
-		
-		Arrays.sort(A);  // Sort using Java's built-in sort method!
-		System.out.print("Sorted by Arrays.sort():  ");
-		printArray(A);   // (Prints a correctly sorted array.)
-
-		bubbleSort(B);
-		System.out.print("Sorted by Bubble Sort:    ");
-		printArray(B);
-
-		selectionSort(C);
-		System.out.print("Sorted by Selection Sort: ");
-		printArray(C);
+//		System.out.print("The array is:");
+//		printArray(A);
+//		
+//		if (contains(A,5))
+//			System.out.println("This array DOES contain 5.");
+//		else
+//			System.out.println("This array DOES NOT contain 5.");
+//		
+//		Arrays.sort(A);  // Sort using Java's built-in sort method!
+//		System.out.print("Sorted by Arrays.sort():  ");
+//		printArray(A);   // (Prints a correctly sorted array.)
+//
+//		bubbleSort(B);
+//		System.out.print("Sorted by Bubble Sort:    ");
+//		printArray(B);
+//
+//		selectionSort(C);
+//		System.out.print("Sorted by Selection Sort: ");
+//		printArray(C);
 		
 		insertionSort(D);
 		System.out.print("Sorted by Insertion Sort: ");
@@ -59,9 +59,11 @@ public class BuggySearchAndSort {
 		for (int i = 0; i < array.length; i++) {
 			if (array[i] == val)
 				return true;
+			else
+				return false;
 		}
 		return false;
-	} // remove else statement that prevented i to be incremented.
+	}
 	
 	/**
 	 * Sorts an array into non-decreasing order.  This inefficient sorting
@@ -71,7 +73,7 @@ public class BuggySearchAndSort {
 	 */
 	public static void bubbleSort(int[] array) {
 		for (int i = 0; i < array.length; i++) {
-			for (int j = 0; j < array.length-1; j++) {
+			for (int j = 0; j < array.length-1; i++) {
 				if (array[j] > array[j+1]) { // swap elements j and j+1
 					int temp = array[j];
 					array[j] = array[j+1];
@@ -79,7 +81,7 @@ public class BuggySearchAndSort {
 				}
 			}
 		}
-	}// possibly fixed. changed second for loop to increment j instead of i.
+	}
 	
 	/**
 	 * Sorts an array into non-decreasing order.  This method uses a selection
@@ -90,7 +92,7 @@ public class BuggySearchAndSort {
 		for (int top = array.length - 1; top > 0; top--) {
 			int positionOfMax = 0;
 			for (int i = 1; i <= top; i++) {
-				if (array[i] > array[positionOfMax])
+				if (array[1] > array[positionOfMax])
 					positionOfMax = i;
 			}
 			int temp = array[top];  // swap top item with biggest item
