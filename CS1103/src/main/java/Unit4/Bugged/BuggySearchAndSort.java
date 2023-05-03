@@ -110,12 +110,12 @@ public class BuggySearchAndSort {
 		for (int top = 1; top < array.length; top++) {
 			int temp = array[top];  // copy item that into temp variable
 			int pos = top - 1;
-			while (pos >= 0 && array[pos] > temp) {
+			while (pos > 0 && array[pos] > temp) {
 				   // move items that are bigger than temp up one position
 				array[pos+1] = array[pos];
 				pos--;
 			}
-			array[pos + 1] = temp;  // place temp into last vacated position
+			array[pos] = temp;  // place temp into last vacated position
 		}
 	}
 	
