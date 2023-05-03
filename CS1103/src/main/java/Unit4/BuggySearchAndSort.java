@@ -59,11 +59,9 @@ public class BuggySearchAndSort {
 		for (int i = 0; i < array.length; i++) {
 			if (array[i] == val)
 				return true;
-			else
-				return false;
 		}
 		return false;
-	}
+	} // remove else statement that prevented i to be incremented.
 	
 	/**
 	 * Sorts an array into non-decreasing order.  This inefficient sorting
@@ -73,7 +71,7 @@ public class BuggySearchAndSort {
 	 */
 	public static void bubbleSort(int[] array) {
 		for (int i = 0; i < array.length; i++) {
-			for (int j = 0; j < array.length-1; i++) {
+			for (int j = 0; j < array.length-1; j++) {
 				if (array[j] > array[j+1]) { // swap elements j and j+1
 					int temp = array[j];
 					array[j] = array[j+1];
@@ -81,7 +79,7 @@ public class BuggySearchAndSort {
 				}
 			}
 		}
-	}
+	}// possibly fixed. changed second for loop to increment j instead of i.
 	
 	/**
 	 * Sorts an array into non-decreasing order.  This method uses a selection
