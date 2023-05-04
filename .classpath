@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="CS1102/src/main/java"/>
+	<classpathentry kind="src" path="CS1103-PA01/src/main/java"/>
+	<classpathentry excluding="Test/" kind="src" path="CS1103/src/main/java"/>
+	<classpathentry kind="src" path="CS1103/src/main/java/Test"/>
+	<classpathentry kind="src" path="JavaFXstuffs/src/main/java"/>
+	<classpathentry kind="lib" path="CS1103-PA01/target/CS1103-PA01-1.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="CS1103/target/CS1103-1.0-SNAPSHOT.jar"/>
+	<classpathentry kind="output" path="CS1102/target/classes"/>
+</classpath>
