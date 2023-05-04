@@ -9,3 +9,27 @@ CS1102/src/main/java/ren/cs1102/Entities/GradedQuiz.java
 CS1103/.idea/CS1103.iml
 
 .project
+
+CS1102/.classpath
+
+CS1103-PA01/.classpath
+
+CS1103/.classpath
+
+JavaFXstuffs/.classpath
+
+CS1102/.settings/
+
+CS1103-PA01/.settings/
+
+CS1103-PA01/target/classes/META-INF/
+
+CS1103/.settings/
+
+CS1103/target/classes/META-INF/
+
+CS1103/target/classes/Unit3/Unit3ProgrammingAssignment.zip
+
+JavaFXstuffs/.settings/
+
+JavaFXstuffs/target/classes/META-INF/
