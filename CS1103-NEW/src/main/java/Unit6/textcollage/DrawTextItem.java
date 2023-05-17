@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.Serializable;
 
 /**
  * An object of type DrawText can draw a string in
@@ -15,7 +16,7 @@ import java.awt.Graphics2D;
  * is specified in the constructor and cannot be changed.
  * The position and other properties can be changed.
  */
-public class DrawTextItem {
+public class DrawTextItem implements Serializable {
 	
 	private final String string;  // The String that is drawn by this item.
 	
