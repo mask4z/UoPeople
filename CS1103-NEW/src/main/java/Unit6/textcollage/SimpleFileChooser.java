@@ -104,8 +104,7 @@ public class SimpleFileChooser {
 		int option = dialog.showOpenDialog(parent);
 		if (option != JFileChooser.APPROVE_OPTION)
 			return null;  // User canceled or clicked the dialog's close box.
-		File selectedFile = dialog.getSelectedFile();
-		return selectedFile;
+		return dialog.getSelectedFile();
 	}
 	
 	/**
