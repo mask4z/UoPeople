@@ -1,7 +1,5 @@
 package Unit5.LearningJournal;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class HashTableTest {
 
     public static void main (String[] args) {

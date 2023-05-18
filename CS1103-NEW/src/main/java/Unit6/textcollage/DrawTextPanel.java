@@ -13,11 +13,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.InputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Scanner;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JColorChooser;
@@ -45,7 +45,7 @@ public class DrawTextPanel extends JPanel {
     // variable should be replaced by a variable of type
     // ArrayList<DrawStringItem> that can store multiple items.
 
-    private List<DrawTextItem> theStrings = new ArrayList<>();  // change to an ArrayList<DrawTextItem> !
+    private List<DrawTextItem> theStrings = new ArrayList<>();
 
 
     private Color currentTextColor = Color.BLACK;  // Color applied to new strings.
@@ -138,13 +138,13 @@ public class DrawTextPanel extends JPanel {
         s.setTextColor(currentTextColor);  // Default is null, meaning default color of the canvas (black).
 
 //   SOME OTHER OPTIONS THAT CAN BE APPLIED TO TEXT ITEMS:
-        s.setFont(new Font("Serif", Font.ITALIC + Font.BOLD, 12));  // Default is null, meaning font of canvas.
-        s.setMagnification(3);  // Default is 1, meaning no magnification.
-        s.setBorder(true);  // Default is false, meaning don't draw a border.
-        s.setRotationAngle(25);  // Default is 0, meaning no rotation.
-        s.setTextTransparency(0.3); // Default is 0, meaning text is not at all transparent.
-        s.setBackground(Color.BLUE);  // Default is null, meaning don't draw a background area.
-        s.setBackgroundTransparency(0.7);  // Default is 0, meaning background is not transparent.
+//        s.setFont(new Font("Serif", Font.ITALIC + Font.BOLD, 12));  // Default is null, meaning font of canvas.
+//        s.setMagnification(3);  // Default is 1, meaning no magnification.
+//        s.setBorder(true);  // Default is false, meaning don't draw a border.
+//        s.setRotationAngle(25);  // Default is 0, meaning no rotation.
+//        s.setTextTransparency(0.3); // Default is 0, meaning text is not at all transparent.
+//        s.setBackground(Color.BLUE);  // Default is null, meaning don't draw a background area.
+//        s.setBackgroundTransparency(0.7);  // Default is 0, meaning background is not transparent.
 
         theStrings.add(s);  // Set this string as the ONLY string to be drawn on the canvas!
         undoMenuItem.setEnabled(true);
@@ -208,65 +208,84 @@ public class DrawTextPanel extends JPanel {
      * @param command the text of the menu command.
      */
     private void doMenuCommand(String command) {
-        if (command.equals("Save...")) { // save all the string info to a file
-            File imageFile = fileChooser.getOutputFile(this, "Select Text Collage File Name", "textimage.txt");
-            if (imageFile == null) return;
-
-            try (PrintWriter pw = new PrintWriter(imageFile)) {
-
-                // details of DrawTextItem onto file
-                pw.println(this.getBackground().toString());
-
-                for (DrawTextItem item : theStrings
-                ) {
-                    pw.println(item.toString());
-                    pw.println(item.getTextColor().toString());
+        switch (command) {
+            case "Save..." -> {  // save all the string info to a file
+                File saveFile = fileChooser.getOutputFile(this, "Select Text Collage File Name", "textcollage");
+                if (saveFile == null) return;
+                try (FileOutputStream fos = new FileOutputStream(saveFile);
+                     ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+                    oos.writeObject(theStrings);
+                    oos.flush();
+                } catch (IOException e) {
+                    return;
                 }
-                // Try-with resources automatically closes the PrintWriter
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Sorry, an error occurred while trying to save the image:\n" + e);
             }
-
-
-        } else if (command.equals("Open...")) { // read a previously saved file, and reconstruct the list of strings
-            JOptionPane.showMessageDialog(this, "Sorry, the Open command is not implemented.");
-            canvas.repaint(); // (you'll need this to make the new list of strings take effect)
-        } else if (command.equals("Clear")) {  // remove all strings
-            theStrings = null;   // Remove the ONLY string from the canvas.
-            undoMenuItem.setEnabled(false);
-            canvas.repaint();
-        } else if (command.equals("Remove Item")) { // remove the most recently added string
-            theStrings = null;   // Remove the ONLY string from the canvas.
-            undoMenuItem.setEnabled(false);
-            canvas.repaint();
-        } else if (command.equals("Set Text Color...")) {
-            Color c = JColorChooser.showDialog(this, "Select Text Color", currentTextColor);
-            if (c != null) currentTextColor = c;
-        } else if (command.equals("Set Background Color...")) {
-            Color c = JColorChooser.showDialog(this, "Select Background Color", canvas.getBackground());
-            if (c != null) {
-                canvas.setBackground(c);
+            case "Open..." -> {  // read a previously saved file, and reconstruct the list of strings
+                theStrings = readObjectFromFile(Objects.requireNonNull(fileChooser.getInputFile(this, "Please select input file")));
+                canvas.repaint(); // (you'll need this to make the new list of strings take effect)
+            }
+            case "Clear" -> {   // remove all strings
+                theStrings.removeAll(theStrings);   // removes all the strings in the list. Fixed NPE bug
+                undoMenuItem.setEnabled(false);
                 canvas.repaint();
             }
-        } else if (command.equals("Save Image...")) {  // save a PNG image of the drawing area
-            File imageFile = fileChooser.getOutputFile(this, "Select Image File Name", "textimage.png");
-            if (imageFile == null) return;
-            try {
-                // Because the image is not available, I will make a new BufferedImage and
-                // draw the same data to the BufferedImage as is shown in the panel.
-                // A BufferedImage is an image that is stored in memory, not on the screen.
-                // There is a convenient method for writing a BufferedImage to a file.
-                BufferedImage image = new BufferedImage(canvas.getWidth(), canvas.getHeight(), BufferedImage.TYPE_INT_RGB);
-                Graphics g = image.getGraphics();
-                g.setFont(canvas.getFont());
-                canvas.paintComponent(g);  // draws the canvas onto the BufferedImage, not the screen!
-                boolean ok = ImageIO.write(image, "PNG", imageFile); // write to the file
-                if (ok == false) throw new Exception("PNG format not supported (this shouldn't happen!).");
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Sorry, an error occurred while trying to save the image:\n" + e);
+            case "Remove Item" -> {  // remove the most recently added string
+                if (!theStrings.isEmpty()) {
+                    theStrings.remove(theStrings.get(theStrings.size() - 1)); // Undo the most recent insertion. NEW feature.
+                } else {
+                    undoMenuItem.setEnabled(false);
+                }
+                canvas.repaint();
+            }
+            case "Set Text Color..." -> {
+                Color c = JColorChooser.showDialog(this, "Select Text Color", currentTextColor);
+                if (c != null) currentTextColor = c;
+            }
+            case "Set Background Color..." -> {
+                Color c = JColorChooser.showDialog(this, "Select Background Color", canvas.getBackground());
+                if (c != null) {
+                    canvas.setBackground(c);
+                    canvas.repaint();
+                }
+            }
+            case "Save Image..." -> {   // save a PNG image of the drawing area
+                File imageFile = fileChooser.getOutputFile(this, "Select Image File Name", "textimage.png");
+                if (imageFile == null) return;
+                try {
+                    // Because the image is not available, I will make a new BufferedImage and
+                    // draw the same data to the BufferedImage as is shown in the panel.
+                    // A BufferedImage is an image that is stored in memory, not on the screen.
+                    // There is a convenient method for writing a BufferedImage to a file.
+                    BufferedImage image = new BufferedImage(canvas.getWidth(), canvas.getHeight(), BufferedImage.TYPE_INT_RGB);
+                    Graphics g = image.getGraphics();
+                    g.setFont(canvas.getFont());
+                    canvas.paintComponent(g);  // draws the canvas onto the BufferedImage, not the screen!
+                    boolean ok = ImageIO.write(image, "PNG", imageFile); // write to the file
+                    if (!ok) throw new Exception("PNG format not supported (this shouldn't happen!).");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Sorry, an error occurred while trying to save the image:\n" + e);
+                }
             }
         }
     }
 
-
+    /**
+     * This method reads in the Java objects that has been serialized from a file
+     * and assigns the value to @toReturn.
+     *
+     * @param inputFile
+     * @return toReturn
+     */
+    private ArrayList<DrawTextItem> readObjectFromFile(File inputFile) {
+        ArrayList<DrawTextItem> toReturn = null;
+        try {
+            FileInputStream fis = new FileInputStream(inputFile);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            toReturn = (ArrayList<DrawTextItem>) ois.readObject();
+            ois.close();
+            return toReturn;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }
