@@ -43,14 +43,14 @@ public class WebServer {
             OutputStream out = connection.getOutputStream();
             PrintWriter pOut = new PrintWriter(out);
 
-            while (true) { // old implementation to demonstrate what the request looks like.
-                if (!in.hasNextLine())
-                    break;
-                String line = in.nextLine();
-                if (line.trim().length() == 0)
-                    break;
-                System.out.println("   " + line);
-            }
+//            while (true) { // old implementation to demonstrate what the request looks like.
+//                if (!in.hasNextLine())
+//                    break;
+//                String line = in.nextLine();
+//                if (line.trim().length() == 0)
+//                    break;
+//                System.out.println("   " + line);
+//            }
 
             while (true) {
                 if (!in.hasNext()) {
@@ -60,16 +60,21 @@ public class WebServer {
                 if (request.trim().length() == 0) {
                     break;
                 } else if (request.trim().startsWith("GET")) {
-                    pOut.print("Test" +
-                            ""
+                    pOut.print("Test"
                             + "\r\n");
                     pOut.flush();
+                    System.out.println(request);
+                } else {
+                    pOut.print("Response 404: File Not Found"
+                            + "\r\n");
+                    pOut.flush();
+                    throw new RuntimeException("EEEERRRRR NOPE");
                 }
             }
         } catch (IOException io) {
             throw new RuntimeException(io);
         } catch (Exception e) {
-
+            System.out.println(e.getMessage());
         } finally {
             System.out.println("Connection closed");
             connection.close();
