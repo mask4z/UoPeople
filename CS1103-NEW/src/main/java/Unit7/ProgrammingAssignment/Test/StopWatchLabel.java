@@ -1,4 +1,4 @@
-package Unit7.ProgrammingAssignment;
+package Unit7.ProgrammingAssignment.Test;
 
 import java.awt.event.*;
 import javax.swing.*;
