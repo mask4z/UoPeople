@@ -1,4 +1,4 @@
-package Test.Unit7DiscussionExample;
+package Unit7.DiscussionExample;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package Test.Unit7DiscussionExample;
+package Unit7.DiscussionExample;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
