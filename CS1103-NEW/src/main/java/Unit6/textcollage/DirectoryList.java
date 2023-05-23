@@ -1,8 +1,10 @@
 package Unit6.textcollage;
 
+import javax.swing.*;
 import java.io.File;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -26,7 +28,7 @@ public class DirectoryList {
 
         System.out.print("Enter a directory name: ");
         directoryName = scanner.nextLine().trim();
-        directory = new File(directoryName, "test");
+        directory = new File(directoryName, "TestOne"); // Please provide the name of the di
 
         if (!directory.isDirectory()) {
             if (!directory.exists())
@@ -34,8 +36,7 @@ public class DirectoryList {
             else
                 System.out.println("That file is not a directory.");
         } else {
-            files.add(String.valueOf(directory));
-            System.out.println("Files in directory \"" + directory + "\":");
+//            files.add(String.valueOf(directory));
             getFiles(directory);
         }
 
@@ -43,18 +44,15 @@ public class DirectoryList {
 
     public static void getFiles(File file) {
 
-        String[] files = file.list();
-        for (String anotherFile : Objects.requireNonNull(file.list())) {
-            File newFile = new File(file, anotherFile);
-            if (newFile.isDirectory()) {
-                getFiles(newFile);
-            }
-            System.out.println("Files in directory \"" + file + "\":");
-            for (String s : files) {
-                System.out.println(s);
+        File[] files = file.listFiles();
+        System.out.println("Files in directory \"" + file + "\":");
+        for (File anotherFile : files) {
+
+            if (anotherFile.isDirectory()) {
+                getFiles(anotherFile);
+            } else {
+                System.out.println(anotherFile.getName());
             }
         }
-
     }
-
 } // end class DirectoryList
