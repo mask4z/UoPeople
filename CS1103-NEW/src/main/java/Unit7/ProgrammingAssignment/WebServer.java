@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class WebServer {
 
     static final Integer LISTENING_PORT = 50505;
-    static final String rootDirectory = "C:\\Users\\Renaldo\\Desktop\\"; //Set up root directory
+    static final String rootDirectory = "C:\\Users\\renos\\Desktop\\"; //Set up root directory
 
     public static void main(String[] args) {
         ServerSocket serverSocket;
@@ -25,8 +25,7 @@ public class WebServer {
         try {
             while (true) {
                 Socket connection = serverSocket.accept();
-                System.out.println("\nConnection from "
-                        + connection.getRemoteSocketAddress());
+                System.out.println("\nConnection from " + connection.getRemoteSocketAddress());
                 handleConnection(connection);
             }
         } catch (Exception e) {
@@ -45,72 +44,46 @@ public class WebServer {
             Scanner in = new Scanner(connection.getInputStream());
             OutputStream out = connection.getOutputStream();
             pOut = new PrintWriter(out);
-            String line = in.nextLine();
-            List<String> words = Arrays.stream(line.split(" ")).toList();
 
-            if (!words.get(0).contentEquals("GET")) {
-                sendErrorResponse(501, out);
-                connection.close();
-            }
-            if (in.tokens().count() != 3) {
-                sendErrorResponse(400, out);
-                connection.close();
-            }
-            System.out.println(line);
+            while (true) {
 
-            File currentWorkingDirectory = new File(rootDirectory);
-            String pathToFile = words.get(1).substring(1);
-            if (words.get(1).startsWith("/")) {
+                String line = in.nextLine();
+                List<String> words = Arrays.stream(line.split(" ")).toList();
 
-                if (!currentWorkingDirectory.exists()) {
+
+                if (!words.get(0).contentEquals("GET")) {
+                    sendErrorResponse(501, out);
+                    connection.close();
+                }
+                if (line.split(" ").length != 3) {
+                    sendErrorResponse(400, out);
+                    connection.close();
+                }
+                System.out.println(line);
+
+                String pathToFile = words.get(1).substring(1);
+                
+                File selectedFile = new File(rootDirectory + pathToFile);
+
+                if (!selectedFile.exists()) {
                     sendErrorResponse(404, out);
                     connection.close();
                     return;
                 }
-                if (currentWorkingDirectory.listFiles() != null
-                        && Objects.requireNonNull(currentWorkingDirectory.listFiles()).length != 0) {
-
-                    String response = getResponseHeaders(currentWorkingDirectory);
-                    response += "Content-type: text/plain\r\n";
-                    pOut.println(response);
-                    pOut.println("Directory: " + currentWorkingDirectory.getName());
-                    for (File file :
-                            currentWorkingDirectory.listFiles()) {
-                        if (file.isDirectory()) {
-                            pOut.println("  dir: " + file.getName());
-                        }
-                        pOut.println("  file: " + file.getName());
-                    }
-                    pOut.flush();
+                if (selectedFile.isDirectory()) {
+                    sendErrorResponse(403, out);
                     connection.close();
-                } else {
-                    pOut.println(getResponseHeaders(currentWorkingDirectory));
-                    pOut.println("Content-Type: text/plain\r\n");
-                    pOut.println("No such file/s on Webserver.");
-                    pOut.flush();
-                    connection.close();
+                    return;
                 }
-            }
-            File selectedFile = new File(rootDirectory + pathToFile);
-
-            if (!selectedFile.exists()) {
-                sendErrorResponse(404, out);
-                connection.close();
-                return;
-            }
-            if (selectedFile.isDirectory()) {
-                sendErrorResponse(403, out);
-                connection.close();
-                return;
-            }
-            if (!selectedFile.canRead()) {
-                sendErrorResponse(403, out);
-                connection.close();
-                return;
-            } else {
-                pOut.println(getResponseHeaders(selectedFile));
-                pOut.flush();
-                sendFile(selectedFile, out);
+                if (!selectedFile.canRead()) {
+                    sendErrorResponse(403, out);
+                    connection.close();
+                    return;
+                } else {
+                    pOut.println(getResponseHeaders(selectedFile));
+                    pOut.flush();
+                    sendFile(selectedFile, out);
+                }
             }
         } catch (IOException io) {
             throw new RuntimeException(io);
@@ -122,16 +95,104 @@ public class WebServer {
         }
     }
 
-    private static void sendFile(File selectedFile, OutputStream out) {
+    private static void sendFile(File selectedFile, OutputStream socket) throws IOException {
 
+        InputStream in = new BufferedInputStream(new FileInputStream(selectedFile));
+        OutputStream out = new BufferedOutputStream(socket);
+
+        while (true) {
+            int byt = in.read();
+            if (byt < 0) {
+                break;
+            }
+            out.write(byt);
+        }
+        out.flush();
     }
 
     private static String getResponseHeaders(File currentWorkingDirectory) {
-        return null;
+
+        String responseHeader;
+
+        responseHeader = "HTTP/1.1 200 OK\n";
+        responseHeader += "Connection: close\n";
+        responseHeader += String.format("Content-Length: %d", currentWorkingDirectory.length()) + "\n";
+
+        return responseHeader;
     }
 
-    private static void sendErrorResponse(int responseCode, OutputStream out) {
+    private static void sendErrorResponse(int responseCode, OutputStream socket) {
 
+        String response = "";
+        PrintWriter out = new PrintWriter(socket);
+
+        switch (responseCode) {
+            case 400 -> {
+                response = "\nHTTP/1.1 400 Bad Request\n";
+                response += "Connection: close\n";
+                response += "Content-Type: text/html\n\n";
+                response += """
+                        <html><head><title>Error</title></head><body>\n
+                        <h2>Error: 400 Bad Request</h2>\n
+                        <p>Syntax error.</p>\n
+                        </body></html>
+                        """;
+                out.println(response);
+                out.flush();
+            }
+            case 403 -> {
+                response = "\nHTTP/1.1 403 Forbidden\n";
+                response += "Connection: close\n";
+                response += "Content-Type: text/html\n\n";
+                response += """
+                        <html><head><title>Error</title></head><body>\n
+                        <h2>Error: 403 Forbidden</h2>\n
+                        <p>The resource that you requested is a directory.</p>\n
+                        </body></html>
+                        """;
+                out.println(response);
+                out.flush();
+            }
+            case 404 -> {
+                response = "\nHTTP/1.1 404 Not Found\n";
+                response += "Connection: close\n";
+                response += "Content-Type: text/html\n\n";
+                response += """
+                        <html><head><title>Error</title></head><body>\n
+                        <h2>Error: 404 Not Found</h2>\n
+                        <p>The resource that you requested does not exist on this server.</p>\n
+                        </body></html>
+                        """;
+                out.println(response);
+                out.flush();
+            }
+            case 500 -> {
+                response = "\nHTTP/1.1 500 Internal Server Error\n";
+                response += "Connection: close\n";
+                response += "Content-Type: text/html\n\n";
+                response += """
+                        <html><head><title>Error</title></head><body>\n
+                        <h2>Error: 500 Internal Server Error</h2>\n
+                        <p>The request to the server is incorrect.</p>\n
+                        </body></html>
+                        """;
+                out.println(response);
+                out.flush();
+            }
+            case 501 -> {
+                response = "\nHTTP/1.1 501 Not Implemented\n";
+                response += "Connection: close\n";
+                response += "Content-Type: text/html\n\n";
+                response += """
+                        <html><head><title>Error</title></head><body>\n
+                        <h2>Error: 501 Not Implemented</h2>\n
+                        <p>The request not a GET method.</p>\n
+                        </body></html>
+                        """;
+                out.println(response);
+                out.flush();
+            }
+        }
     }
 
     private static String getMimeType(String fileName) {
