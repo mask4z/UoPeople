@@ -1,9 +1,6 @@
 package Unit7.ProgrammingAssignment;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
@@ -35,22 +32,14 @@ public class WebServer {
         }
     }
 
-    public static void handleConnection(Socket connection) throws IOException {
+    public static void handleConnection(Socket connection) throws IOException, RuntimeException {
 
-        try (connection) {
+        try (connection; connection) {
 
             Scanner in = new Scanner(connection.getInputStream());
             OutputStream out = connection.getOutputStream();
             PrintWriter pOut = new PrintWriter(out);
-
-//            while (true) { // old implementation to demonstrate what the request looks like.
-//                if (!in.hasNextLine())
-//                    break;
-//                String line = in.nextLine();
-//                if (line.trim().length() == 0)
-//                    break;
-//                System.out.println("   " + line);
-//            }
+            String rootDirectory = ""; //Set up root directory
 
             while (true) {
                 if (!in.hasNext()) {
@@ -59,16 +48,30 @@ public class WebServer {
                 String request = in.nextLine();
                 if (request.trim().length() == 0) {
                     break;
-                } else if (request.trim().startsWith("GET")) {
-                    pOut.print("Test"
-                            + "\r\n");
-                    pOut.flush();
+                }
+                if (request.trim().startsWith("GET")) {
                     System.out.println(request);
+
+                    if (request.trim().substring(4).startsWith("/")) {
+                        String pathToFile = request.trim().substring(3);
+                        File file = new File(rootDirectory + pathToFile);
+
+                        if (!file.exists()) {
+                            pOut.print("HTTP/1.1 404 File Not Found\r\n\r\n");
+                            pOut.flush();
+                            throw new RuntimeException("File not found");
+                        }
+                        //Handle file
+                    }
                 } else {
-                    pOut.print("Response 404: File Not Found"
-                            + "\r\n");
+                    pOut.print("HTTP/1.1 405 Method Not Allowed\r\n\r\n");
                     pOut.flush();
-                    throw new RuntimeException("EEEERRRRR NOPE");
+                    throw new RuntimeException("Method not allowed");
+                }
+                if (in.tokens().count() != 3) {
+                    pOut.print("HTTP/1.1 Error: Invalid tokens\r\n\r\n");
+                    pOut.flush();
+                    throw new RuntimeException("Invalid tokens");
                 }
             }
         } catch (IOException io) {
@@ -76,8 +79,8 @@ public class WebServer {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
-            System.out.println("Connection closed");
             connection.close();
+            System.out.println("Connection closed");
         }
     }
 }
