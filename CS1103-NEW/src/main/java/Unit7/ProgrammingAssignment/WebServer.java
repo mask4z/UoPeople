@@ -8,10 +8,16 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
+
+/**
+ * This is my very first functional Webserver.
+ *
+ * Please copy my 'index.html' file into your root directory.
+ */
 public class WebServer {
 
     static final Integer LISTENING_PORT = 50505;
-    static final String rootDirectory = "C:\\Users\\renos\\Desktop\\"; //Set up root directory
+    static final String rootDirectory = "C:\\Users\\renos\\Desktop\\"; //Dear Peer, please change this to your desired root directory.
 
     public static void main(String[] args) {
         ServerSocket serverSocket;
@@ -37,6 +43,14 @@ public class WebServer {
         }
     }
 
+    /**
+     * This method will read the request from the incoming connection and respond to it if
+     * the request is a GET request, else it will respond with an error code.
+     *
+     * @param connection
+     * @throws IOException
+     * @throws RuntimeException
+     */
     public static void handleConnection(Socket connection) throws IOException, RuntimeException {
 
         PrintWriter pOut;
@@ -95,6 +109,14 @@ public class WebServer {
         }
     }
 
+    /**
+     * This method will send the contents of the file located in the root directory
+     * and requested from the browser back to the browser.
+     *
+     * @param selectedFile
+     * @param socket
+     * @throws IOException
+     */
     private static void sendFile(File selectedFile, OutputStream socket) throws IOException {
 
         InputStream in = new BufferedInputStream(new FileInputStream(selectedFile));
@@ -110,6 +132,12 @@ public class WebServer {
         out.flush();
     }
 
+    /**
+     * This method prepares the response headers to be sent back to the browser.
+     *
+     * @param currentWorkingDirectory
+     * @return
+     */
     private static String getResponseHeaders(File currentWorkingDirectory) {
 
         String responseHeader;
@@ -122,6 +150,12 @@ public class WebServer {
         return responseHeader;
     }
 
+    /**
+     * This method will send the appropriate error response back to the browser
+     *
+     * @param responseCode
+     * @param socket
+     */
     private static void sendErrorResponse(int responseCode, OutputStream socket) {
 
         String response = "";
@@ -196,6 +230,12 @@ public class WebServer {
         }
     }
 
+    /**
+     * This method helps to identify the content type of the requested file.
+     *
+     * @param fileName
+     * @return
+     */
     private static String getMimeType(String fileName) {
         int pos = fileName.lastIndexOf('.');
         if (pos < 0)  // no file extension in name
@@ -222,6 +262,9 @@ public class WebServer {
         // it will probably make the browser offer to save the file.
     }
 
+    /**
+     * This method enables this web server to be multi-threaded.
+     */
     private static class ConnectionThread extends Thread {
         Socket connection;
 
@@ -237,4 +280,4 @@ public class WebServer {
             }
         }
     }
-}
+} // end of class
