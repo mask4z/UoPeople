@@ -26,7 +26,9 @@ public class WebServer {
             while (true) {
                 Socket connection = serverSocket.accept();
                 System.out.println("\nConnection from " + connection.getRemoteSocketAddress());
-                handleConnection(connection);
+                
+                ConnectionThread thread = new ConnectionThread(connection);
+                thread.start();
             }
         } catch (Exception e) {
             System.out.println("Server socket shut down unexpectedly!");
@@ -59,10 +61,8 @@ public class WebServer {
                     sendErrorResponse(400, out);
                     connection.close();
                 }
-                System.out.println(line);
 
                 String pathToFile = words.get(1).substring(1);
-                
                 File selectedFile = new File(rootDirectory + pathToFile);
 
                 if (!selectedFile.exists()) {
@@ -116,7 +116,8 @@ public class WebServer {
 
         responseHeader = "HTTP/1.1 200 OK\n";
         responseHeader += "Connection: close\n";
-        responseHeader += String.format("Content-Length: %d", currentWorkingDirectory.length()) + "\n";
+        responseHeader += "Content-Type: " + getMimeType(currentWorkingDirectory.toString()) + "\n";
+        responseHeader += String.format("Content-Length: %d", currentWorkingDirectory.length()) + "\r\n\r\n";
 
         return responseHeader;
     }
@@ -219,5 +220,21 @@ public class WebServer {
         else return "x-application/x-unknown";
         // Note:  x-application/x-unknown  is something made up;
         // it will probably make the browser offer to save the file.
+    }
+
+    private static class ConnectionThread extends Thread {
+        Socket connection;
+
+        ConnectionThread(Socket connection) {
+            this.connection = connection;
+        }
+
+        public void run() throws RuntimeException {
+            try {
+                handleConnection(connection);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }
