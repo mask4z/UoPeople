@@ -43,7 +43,7 @@ public class StopWatchLabel extends JLabel implements MouseListener {
     * is shown on the label.
     */
    public void mousePressed(MouseEvent evt) {
-      if (running == false) {
+      if (!running) {
             // Record the time and start the timer.
          running = true;
          startTime = evt.getWhen();  // Time when mouse was clicked.
