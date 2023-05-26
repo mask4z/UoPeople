@@ -41,3 +41,9 @@ CS1103-NEW/target/
 CS1103-Maven/.idea/
 
 *.iml
+
+*.zip
+
+*.txt
+
+*.jar
