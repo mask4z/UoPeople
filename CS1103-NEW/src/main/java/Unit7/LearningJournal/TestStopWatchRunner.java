@@ -1,4 +1,4 @@
- /*
+package Unit7.LearningJournal; /*
        A trivial applet that tests the StopWatchTimer component.
        The applet just creates and shows a StopWatchTimer.
     */

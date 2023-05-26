@@ -1,3 +1,5 @@
+package Unit7.LearningJournal;
+
 import java.awt.event.*;
 import javax.swing.*;
 
