@@ -43,17 +43,18 @@ public class GuiDemo extends JFrame {
 
         drawPanel = new DrawPanel();
         drawPanel.getTextItem().setText(
-                "Big bugs have little bugs\n" +
-                        "      Upon their backs to bite 'em,\n" +
-                        "And little bugs have littler bugs,\n" +
-                        "      And so it goes, ad infinitum."
+                "\"Don’t fear failure. Not failure, \n"
+                + "but low aim, is the crime.\n"
+                + "In great attempts it is glorious even to fail.\"\n"
+                + "- Bruce Lee"
         );
         drawPanel.getTextItem().setFontSize(36);
         drawPanel.getTextItem().setJustify(TextItem.LEFT);
-        drawPanel.setBackgroundImage(Util.getImageResource("resources/images/mandelbrot.jpeg"));
+        drawPanel.setBackgroundImage(Util.getImageResource("resources/images/bruce-lee-in-the-chinese-connection-1972-original-title-_002"));
         content.add(drawPanel, BorderLayout.CENTER);
 
         // Add an icon toolbar to the SOUTH position of the layout
+        content.add(makeToolbar(), BorderLayout.NORTH);
 
         IconSupport iconSupport = new IconSupport(drawPanel);
         content.add(iconSupport.createToolbar(true), BorderLayout.SOUTH);
@@ -66,9 +67,8 @@ public class GuiDemo extends JFrame {
         textMenu = new TextMenu(drawPanel);
         menuBar.add(textMenu);
         menuBar.add(makeBackgroundMenu());
-        menuBar.add(iconSupport.createMenu());
-        menuBar.add(makeToolbar(), BorderLayout.NORTH);
         setJMenuBar(menuBar);
+        menuBar.add(iconSupport.createMenu());
 
         // Set the size of the window and its position.
 
@@ -133,6 +133,9 @@ public class GuiDemo extends JFrame {
 
     public JToolBar makeToolbar() {
         JToolBar toolBar = new JToolBar();
+        toolBar.add(newPictureAction);
+        toolBar.add(saveImageAction);
+        toolBar.addSeparator();
         toolBar.add(new ChooseBackgroundAction("Mandelbrot"));
         toolBar.add(new ChooseBackgroundAction("Earthrise"));
         toolBar.add(new ChooseBackgroundAction("Sunset"));
@@ -142,9 +145,6 @@ public class GuiDemo extends JFrame {
         toolBar.add(new ChooseBackgroundAction("Custom..."));
         toolBar.addSeparator();
         toolBar.add(new ChooseBackgroundAction("Color..."));
-        toolBar.addSeparator();
-        toolBar.add(newPictureAction);
-        toolBar.add(saveImageAction);
 
         return toolBar;
     }
