@@ -2,6 +2,7 @@ package Unit8.ProgrammingAssingment.guidemo;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.logging.Logger;
 
 import javax.swing.*;;
 
@@ -15,6 +16,8 @@ public class TextMenu extends JMenu {
 
     private JCheckBoxMenuItem bold;   // controls whether the text is bold or not.
     private JCheckBoxMenuItem italic; // controls whether the text is italic or not.
+
+    private JRadioButtonMenuItem left; // controls whether the text is justified left, center, or right.
 
     /**
      * Constructor creates all the menu commands and adds them to the menu.
@@ -52,6 +55,25 @@ public class TextMenu extends JMenu {
                 }
             }
         });
+        final JMenuItem lineHeight = new JMenuItem("Set the line height");
+
+        lineHeight.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double currentLineHeight = panel.getTextItem().getLineHeightMultiplier();
+                String input = JOptionPane.showInputDialog(panel, "What line height would you like to use?", currentLineHeight);
+                if (input != null && input.trim().length() > 0) {
+                    try {
+                        double newLineHeight = Double.parseDouble(input.trim()); // can throw NumberFormatException
+                        panel. getTextItem().setLineHeightMultiplier(newLineHeight);// can throw IllegalArgumentException
+                        panel.repaint();
+                    } catch (Exception exc) {
+                        JOptionPane.showMessageDialog(panel, input + " is not a legal line height. \n" +
+                                "Please enter a positive double value.");
+                    }
+                }
+            }
+        });
         final JMenuItem color = new JMenuItem("Set Color..." );
         color.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -80,6 +102,7 @@ public class TextMenu extends JMenu {
         add(change);
         addSeparator();
         add(size);
+        add(lineHeight);
         add(color);
         add(italic);
         add(bold);
@@ -97,6 +120,8 @@ public class TextMenu extends JMenu {
     public void setDefaults() {
         italic.setSelected(false);
         bold.setSelected(false);
+        left.setSelected(true);
+
     }
 
     /**
@@ -189,7 +214,7 @@ public class TextMenu extends JMenu {
         ButtonGroup bgroup = new ButtonGroup();
 
         // LEFT
-        JRadioButtonMenuItem left = new JRadioButtonMenuItem("Left" );
+        left = new JRadioButtonMenuItem("Left" );
         left.addActionListener(justifyLeft);
         bgroup.add(left);
 
